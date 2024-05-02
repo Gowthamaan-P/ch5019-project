@@ -1,6 +1,6 @@
 %% Question - 1
 % Clear workspace and command window
-clear; clc;close all;
+clear; clc; close all;
 % For reproducibility
 rng(13); 
 
@@ -12,10 +12,11 @@ beta = [0;3;5]; % True Beta
 %% Estimation Method
 method = 'Ordinary Least Squares';
 fprintf(['<strong>Linear Regression with ', method ,'</strong>\n\n']);
+
 %% Initialize variables
 beta_estimates = zeros(R, 3); % Store parameter estimates
 loss = zeros(R, 1); % Store final cost
-alpha = 0.003; % Learning rate
+alpha = 0.01; % Learning rate
 epochs = 1000; % Epochs or Number of Iterations
 
 %% Perform Regression for R realizations
@@ -28,7 +29,7 @@ for r = 1:R
     X = [X1 X2];
     
     % Perform Regression
-    [beta_hat, cost_history] = ols(X, y, alpha, epochs);
+    [beta_hat, cost_history] = lts(X, y, alpha, epochs);
     beta_estimates(r, :) = beta_hat';
     loss(r) = cost_history(end);
 end
@@ -41,9 +42,9 @@ fprintf('Best parameter estimates: ');
 disp(beta_estimates(best_parameter, :));
 fprintf('Loss: %.4f\n\n', min_ssr);
 
-
 %% Plot Results
 % Generate Test Data
+rng(27); % Change reproducibility to generate new data
 X1 = randn(N, 1);
 X2 = randn(N, 1);
 E = randn(N, 1);
