@@ -1,5 +1,5 @@
 %% Ordinary Least Squares using Gradient Descent
-function [beta, cost_history] = ols(X, y, alpha, epochs)
+function [beta, cost_history] = ordinaryLeastSquares(X, y, alpha, epochs)
     %% Input Arguments
     %   X: Input features (n x m matrix, where n is the number of data points
     %      and m is the number of features)

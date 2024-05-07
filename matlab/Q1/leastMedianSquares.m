@@ -1,5 +1,5 @@
 %% Least Median Squares using Gradient Descent
-function [beta, cost_history] = lms(X, y, alpha, epochs)
+function [beta, cost_history] = leastMedianSquares(X, y, alpha, epochs)
     %% Input Arguments
     %   X: Input features (n x m matrix, where n is the number of data points
     %      and m is the number of features)

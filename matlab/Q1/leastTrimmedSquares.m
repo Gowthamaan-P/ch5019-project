@@ -1,5 +1,5 @@
 %% Least Trimmed Squares using Gradient Descent
-function [beta, cost_history] = lts(X, y, alpha, epochs)
+function [beta, cost_history] = leastTrimmedSquares(X, y, alpha, epochs)
     %% Input Arguments
     %   X: Input features (n x m matrix, where n is the number of data points
     %      and m is the number of features)
@@ -13,18 +13,19 @@ function [beta, cost_history] = lts(X, y, alpha, epochs)
 
     %% Initialize parameters
     n = length(y);                   % Number of data points
-    q = floor((n/2)+1);              % Number of samples to consider for computing loss
+    q = ceil((n/2)+1);              % Number of samples to consider for computing loss
     m = size(X, 2);                  % Number of features
     beta = zeros(m + 1, 1);         % Initialize parameters
     cost_history = zeros(epochs, 1); % Store cost for each iteration
     X = [ones(n, 1) X];              % Add bias term to X
+    index_column = (1:n)';           % Indexing Column
 
     %% Gradient Descent
     for epoch = 1:epochs
         % Compute y_hat and cost
         y_hat = X * beta;              % Hypothesis: y_hat = X * theta
         e = y_hat - y;                 % Residual
-        index_column = (1:n)';
+        
         e_indexed = [e.^2, index_column]; % Add index column (Useful while calculating the gradients)
         e_sorted = sortrows(e_indexed, 1); % Ordered squared residuals 
         e_sampled = e_sorted(1:q, :); % Consider the first q samples
