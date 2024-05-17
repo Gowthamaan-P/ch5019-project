@@ -3,8 +3,8 @@
 % with a threshold value 'm'.
 function sgn = xsign(x, threshold)
     %% Input Arguments
-    %   x: A vector of numerical values.
-    %   threshold: A threshold value (optional). Defaults to zero.
+    %   x(1xn num): A vector of numerical values.
+    %   threshold(num): A threshold value (optional). Defaults to zero.
 
     %% Output Arguments
     %   sgn: A vector containing the signs of the elements in 'x' relative 
